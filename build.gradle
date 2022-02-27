@@ -1,0 +1,40 @@
+plugins {
+	id 'org.springframework.boot' version '2.6.3'
+	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+	id 'org.liquibase.gradle' version '2.1.0'
+	id 'java'
+}
+
+group = 'com.freewiretech.enterprise.asset'
+version = '0.0.1-SNAPSHOT'
+
+sourceCompatibility = '11'
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'com.google.googlejavaformat:google-java-format:1.13.0'
+	compileOnly 'org.projectlombok:lombok'
+	implementation 'org.springdoc:springdoc-openapi-ui:1.6.4'
+	runtimeOnly 'com.h2database:h2'
+	runtimeOnly 'org.postgresql:postgresql'
+	annotationProcessor 'org.projectlombok:lombok'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'	
+	implementation 'org.liquibase:liquibase-core'
+  	liquibaseRuntime 'org.liquibase.ext:liquibase-hibernate5:3.8'
+}
+
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
